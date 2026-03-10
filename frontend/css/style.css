@@ -1,0 +1,79 @@
+body{
+font-family: 'Segoe UI', sans-serif;
+}
+
+#drop-area{
+transition:0.3s;
+}
+
+.logo-ai{
+position:relative;
+display:inline-block;
+animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* hơi nước */
+.logo-ai::after{
+content:"~~~";
+position:absolute;
+top:-10px;
+left:18px;
+font-size:12px;
+color:#22c55e;
+animation: steam 2s infinite;
+}
+
+/* ánh sáng quét */
+.logo-ai::before{
+content:"";
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,0.7),
+transparent
+);
+animation: scan 3s infinite;
+}
+
+/* glow */
+@keyframes glow{
+0%{
+text-shadow:0 0 5px #22c55e;
+}
+100%{
+text-shadow:
+0 0 10px #22c55e,
+0 0 20px #4ade80;
+}
+}
+
+/* steam */
+@keyframes steam{
+0%{
+opacity:0;
+transform:translateY(0);
+}
+50%{
+opacity:1;
+}
+100%{
+opacity:0;
+transform:translateY(-10px);
+}
+}
+
+/* scan */
+@keyframes scan{
+0%{
+left:-100%;
+}
+100%{
+left:100%;
+}
+}
+

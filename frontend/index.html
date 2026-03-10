@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FoodLens AI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="bg-gradient-to-br from-green-50 to-white min-h-screen">
+
+<!-- Navbar -->
+
+<nav class="bg-white shadow-sm">
+
+<div class="container mx-auto px-6 py-4 flex justify-between items-center">
+
+<h1 class="text-2xl font-bold text-green-600 logo-ai">
+🍜 FoodLens
+</h1>
+
+</div>
+
+</nav>
+<!-- Hero -->
+
+<section class="text-center mt-16">
+
+<h1 class="text-5xl font-bold text-gray-800 mb-4">
+
+AI nhận diện món ăn 🍜
+
+</h1>
+
+<p class="text-gray-500 text-lg">
+
+Upload ảnh để phân tích món ăn, nguyên liệu và dinh dưỡng
+
+</p>
+
+</section>
+
+<!-- Upload Card -->
+
+<div class="flex justify-center mt-12">
+
+<div class="bg-white shadow-xl rounded-2xl p-10 w-[420px] text-center">
+
+<div
+id="drop-area"
+class="border-2 border-dashed border-gray-300 rounded-xl p-8 cursor-pointer hover:border-green-500">
+
+<p class="text-gray-500">
+
+Kéo ảnh vào đây hoặc click để upload
+
+</p>
+
+<input
+type="file"
+id="imageInput"
+class="hidden"
+/>
+
+</div>
+
+<img
+id="preview"
+class="mx-auto mt-6 hidden rounded-lg"
+width="260"
+/>
+
+<button
+onclick="uploadImage()"
+class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg text-lg">
+
+🔍 AI Nhận Diện
+
+</button>
+
+<div id="loading" class="hidden mt-6">
+
+<div class="flex flex-col items-center">
+
+<div class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
+
+<p class="mt-3 text-gray-500">
+AI đang phân tích món ăn...
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="js/main.js"></script>
+
+</body>
+
+</html>
