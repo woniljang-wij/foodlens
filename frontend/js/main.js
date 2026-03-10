@@ -31,12 +31,25 @@ preview.classList.remove("hidden")
 // Upload image (giả lập AI)
 function uploadImage(){
 
+const btn = document.getElementById("aiButton")
+const text = document.getElementById("aiText")
+const scan = document.getElementById("scanLine")
+
 if(!input.files.length){
 
 alert("Hãy chọn ảnh trước!")
 return
 
 }
+
+/* bật scan effect */
+if(scan){
+scan.classList.remove("hidden")
+}
+
+/* đổi trạng thái nút */
+btn.disabled = true
+text.innerHTML = "<span class='spin'>🧠</span> AI đang phân tích..."
 
 loading.classList.remove("hidden")
 
