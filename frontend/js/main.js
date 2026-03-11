@@ -3,7 +3,6 @@
 const dropArea = document.getElementById("drop-area")
 const input = document.getElementById("imageInput")
 const preview = document.getElementById("preview")
-const loading = document.getElementById("loading")
 
 // Click upload
 if(dropArea){
@@ -18,11 +17,17 @@ input.addEventListener("change", previewImage)
 function previewImage(){
 
 const file = input.files[0]
+const uploadText = document.getElementById("uploadText")
 
 if(file){
 
 preview.src = URL.createObjectURL(file)
 preview.classList.remove("hidden")
+
+// Ẩn chữ upload
+if(uploadText){
+uploadText.style.display = "none"
+}
 
 }
 
@@ -50,8 +55,6 @@ scan.classList.remove("hidden")
 /* đổi trạng thái nút */
 btn.disabled = true
 text.innerHTML = "<span class='spin'>🧠</span> AI đang phân tích..."
-
-loading.classList.remove("hidden")
 
 setTimeout(()=>{
 

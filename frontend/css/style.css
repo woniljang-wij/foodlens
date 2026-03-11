@@ -226,3 +226,109 @@ transform:rotate(0deg);
 transform:rotate(360deg);
 }
 }
+
+/* ===== AI glowing border ===== */
+
+.upload-card{
+position:relative;
+z-index:1;
+}
+
+/* viền gradient chạy */
+.upload-card::before{
+
+content:"";
+position:absolute;
+
+top:-3px;
+left:-3px;
+right:-3px;
+bottom:-3px;
+
+border-radius:20px;
+
+background:linear-gradient(
+90deg,
+#22c55e,
+#f63b9f,
+#4ade80,
+#f6f03b,
+#3b82f6,
+#a855f7,
+#22c55e
+);
+
+background-size:400%;
+
+z-index:-1;
+
+animation:borderRun 6s linear infinite;
+
+filter:blur(6px);
+opacity:0.8;
+
+}
+
+/* nền trắng giữ nguyên */
+.upload-card::after{
+
+content:"";
+position:absolute;
+
+top:0;
+left:0;
+right:0;
+bottom:0;
+
+background:white;
+
+border-radius:18px;
+
+z-index:-1;
+
+}
+
+/* animation chạy */
+@keyframes borderRun{
+
+0%{
+background-position:0% 50%;
+}
+
+100%{
+background-position:400% 50%;
+}
+
+}
+
+body{
+background-image:url("/uploads/A1.png");
+background-size:cover;
+background-position:center;
+}
+
+/* ===== upload preview fix ===== */
+
+.upload-box{
+height:220px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:12px;
+}
+
+/* chữ upload */
+.upload-placeholder{
+position:absolute;
+text-align:center;
+color:#6b7280;
+}
+
+/* ảnh preview */
+.preview-img{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:12px;
+}
