@@ -1,17 +1,34 @@
 body{
-font-family: 'Segoe UI', sans-serif;
+font-family:'Segoe UI', sans-serif;
+background:#f3f4f6;
+margin:0;
+padding:0;
+}
+
+.ai-page{
+background-image:url("/uploads/A4.png");
+background-size:cover;
+background-position:center;
+min-height:100vh;
 }
 
 #drop-area{
 transition:0.3s;
 }
 
+/* upload box */
 .upload-box{
 position:relative;
 overflow:hidden;
+height:220px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:12px;
 }
 
-/* tia scan */
+/* ===== scan line ===== */
+
 .scan-line{
 position:absolute;
 left:0;
@@ -35,7 +52,6 @@ box-shadow:
 animation:scanMove 2s linear infinite;
 }
 
-/* ánh sáng quét */
 .scan-line::before{
 content:"";
 position:absolute;
@@ -52,26 +68,19 @@ transparent
 );
 }
 
-/* animation chạy */
 @keyframes scanMove{
-
-0%{
-top:-10%;
+0%{top:-10%;}
+100%{top:110%;}
 }
 
-100%{
-top:110%;
-}
-
-}
+/* ===== logo animation ===== */
 
 .logo-ai{
 position:relative;
 display:inline-block;
-animation: glow 2s ease-in-out infinite alternate;
+animation:glow 2s ease-in-out infinite alternate;
 }
 
-/* hơi nước */
 .logo-ai::after{
 content:"~~~";
 position:absolute;
@@ -79,10 +88,9 @@ top:-10px;
 left:18px;
 font-size:12px;
 color:#22c55e;
-animation: steam 2s infinite;
+animation:steam 2s infinite;
 }
 
-/* ánh sáng quét */
 .logo-ai::before{
 content:"";
 position:absolute;
@@ -90,20 +98,19 @@ top:0;
 left:-100%;
 width:100%;
 height:100%;
+
 background:linear-gradient(
 90deg,
 transparent,
 rgba(255,255,255,0.7),
 transparent
 );
-animation: scan 3s infinite;
+
+animation:scan 3s infinite;
 }
 
-/* glow */
 @keyframes glow{
-0%{
-text-shadow:0 0 5px #22c55e;
-}
+0%{text-shadow:0 0 5px #22c55e;}
 100%{
 text-shadow:
 0 0 10px #22c55e,
@@ -111,30 +118,18 @@ text-shadow:
 }
 }
 
-/* steam */
 @keyframes steam{
-0%{
-opacity:0;
-transform:translateY(0);
-}
-50%{
-opacity:1;
-}
-100%{
-opacity:0;
-transform:translateY(-10px);
-}
+0%{opacity:0; transform:translateY(0);}
+50%{opacity:1;}
+100%{opacity:0; transform:translateY(-10px);}
 }
 
-/* scan */
 @keyframes scan{
-0%{
-left:-100%;
+0%{left:-100%;}
+100%{left:100%;}
 }
-100%{
-left:100%;
-}
-}
+
+/* ===== AI button ===== */
 
 .ai-btn{
 position:relative;
@@ -143,17 +138,14 @@ color:white;
 font-weight:600;
 transition:0.3s;
 
-/* glow */
 box-shadow:0 0 15px rgba(34,197,94,0.6);
 }
 
-/* hover */
 .ai-btn:hover{
 transform:translateY(-3px) scale(1.03);
 box-shadow:0 6px 30px rgba(34,197,94,0.8);
 }
 
-/* ánh sáng chạy */
 .ai-btn::before{
 content:"";
 position:absolute;
@@ -175,15 +167,12 @@ animation:shineMove 2.5s infinite;
 }
 
 @keyframes shineMove{
-0%{
-left:-120%;
-}
-100%{
-left:120%;
-}
+0%{left:-120%;}
+100%{left:120%;}
 }
 
-/* chữ đổi màu */
+/* ===== AI text ===== */
+
 .ai-text{
 background:linear-gradient(
 90deg,
@@ -205,13 +194,11 @@ animation:textMove 3s linear infinite;
 }
 
 @keyframes textMove{
-0%{
-background-position:0%;
+0%{background-position:0%;}
+100%{background-position:200%;}
 }
-100%{
-background-position:200%;
-}
-}
+
+/* ===== spin ===== */
 
 .spin{
 display:inline-block;
@@ -219,22 +206,17 @@ animation:spin 1s linear infinite;
 }
 
 @keyframes spin{
-0%{
-transform:rotate(0deg);
-}
-100%{
-transform:rotate(360deg);
-}
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
 }
 
-/* ===== AI glowing border ===== */
+/* ===== upload card glow ===== */
 
 .upload-card{
 position:relative;
 z-index:1;
 }
 
-/* viền gradient chạy */
 .upload-card::before{
 
 content:"";
@@ -266,10 +248,8 @@ animation:borderRun 6s linear infinite;
 
 filter:blur(6px);
 opacity:0.8;
-
 }
 
-/* nền trắng giữ nguyên */
 .upload-card::after{
 
 content:"";
@@ -285,50 +265,65 @@ background:white;
 border-radius:18px;
 
 z-index:-1;
-
 }
 
-/* animation chạy */
 @keyframes borderRun{
-
-0%{
-background-position:0% 50%;
+0%{background-position:0% 50%;}
+100%{background-position:400% 50%;}
 }
 
-100%{
-background-position:400% 50%;
-}
+/* ===== preview ===== */
 
-}
-
-body{
-background-image:url("/uploads/A1.png");
-background-size:cover;
-background-position:center;
-}
-
-/* ===== upload preview fix ===== */
-
-.upload-box{
-height:220px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:12px;
-}
-
-/* chữ upload */
 .upload-placeholder{
 position:absolute;
 text-align:center;
 color:#6b7280;
 }
 
-/* ảnh preview */
 .preview-img{
 position:absolute;
 width:100%;
 height:100%;
 object-fit:cover;
 border-radius:12px;
+}
+
+/* ===== HERO BANNER ===== */
+
+.hero-banner{
+height:100vh;
+background-image:url("/uploads/A3.png");
+background-size:cover;
+background-position:center;
+position:relative;
+}
+
+.hero-banner::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+}
+
+.hero-banner div{
+position:relative;
+z-index:2;
+}
+
+/* ===== feature card ===== */
+
+.feature-card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.feature-card:hover{
+transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }

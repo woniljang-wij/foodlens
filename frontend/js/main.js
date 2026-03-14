@@ -4,201 +4,216 @@ const dropArea = document.getElementById("drop-area")
 const input = document.getElementById("imageInput")
 const preview = document.getElementById("preview")
 
-// Click upload
-if(dropArea){
-dropArea.addEventListener("click", () => input.click())
+// Nếu không phải trang AI thì chỉ load history rồi dừng
+if (!dropArea) {
+    loadHistory()
 }
 
-// Preview image
-if(input){
-input.addEventListener("change", previewImage)
+// ===== Click upload =====
+
+if (dropArea && input) {
+    dropArea.addEventListener("click", () => input.click())
 }
 
-function previewImage(){
+// ===== Preview image =====
 
-const file = input.files[0]
-const uploadText = document.getElementById("uploadText")
-
-if(file){
-
-preview.src = URL.createObjectURL(file)
-preview.classList.remove("hidden")
-
-// Ẩn chữ upload
-if(uploadText){
-uploadText.style.display = "none"
+if (input) {
+    input.addEventListener("change", previewImage)
 }
 
-}
+function previewImage() {
 
-}
+    const file = input.files[0]
+    const uploadText = document.getElementById("uploadText")
 
-// Upload image (giả lập AI)
-function uploadImage(){
+    if (file) {
 
-const btn = document.getElementById("aiButton")
-const text = document.getElementById("aiText")
-const scan = document.getElementById("scanLine")
+        preview.src = URL.createObjectURL(file)
+        preview.classList.remove("hidden")
 
-if(!input.files.length){
+        // Ẩn chữ upload
+        if (uploadText) {
+            uploadText.style.display = "none"
+        }
 
-alert("Hãy chọn ảnh trước!")
-return
+    }
 
 }
 
-/* bật scan effect */
-if(scan){
-scan.classList.remove("hidden")
-}
 
-/* đổi trạng thái nút */
-btn.disabled = true
-text.innerHTML = "<span class='spin'>🧠</span> AI đang phân tích..."
+// ===== Upload image (giả lập AI) =====
 
-setTimeout(()=>{
+function uploadImage() {
 
-// Fake AI result
-const food = "Phở bò"
-const accuracy = "92%"
+    const btn = document.getElementById("aiButton")
+    const text = document.getElementById("aiText")
+    const scan = document.getElementById("scanLine")
 
-// lưu history
-saveHistory(food, accuracy)
+    if (!input || !input.files.length) {
 
-// chuyển trang
-window.location.href="result.html"
+        alert("Hãy chọn ảnh trước!")
+        return
 
-},2000)
+    }
+
+    // bật scan effect
+    if (scan) {
+        scan.classList.remove("hidden")
+    }
+
+    // đổi trạng thái nút
+    if (btn) btn.disabled = true
+    if (text) text.innerHTML = "<span class='spin'>🧠</span> AI đang phân tích..."
+
+    setTimeout(() => {
+
+        // Fake AI result
+        const food = "Phở bò"
+        const accuracy = "92%"
+
+        // lưu history
+        saveHistory(food, accuracy)
+
+        // chuyển trang
+        window.location.href = "result.html"
+
+    }, 2000)
 
 }
 
 
 // ===== Drag & Drop =====
 
-if(dropArea){
+if (dropArea) {
 
-dropArea.addEventListener("dragover",(e)=>{
+    dropArea.addEventListener("dragover", (e) => {
 
-e.preventDefault()
-dropArea.classList.add("border-green-500")
+        e.preventDefault()
+        dropArea.classList.add("border-green-500")
 
-})
+    })
 
-dropArea.addEventListener("dragleave",()=>{
+    dropArea.addEventListener("dragleave", () => {
 
-dropArea.classList.remove("border-green-500")
+        dropArea.classList.remove("border-green-500")
 
-})
+    })
 
-dropArea.addEventListener("drop",(e)=>{
+    dropArea.addEventListener("drop", (e) => {
 
-e.preventDefault()
+        e.preventDefault()
 
-input.files = e.dataTransfer.files
+        input.files = e.dataTransfer.files
 
-previewImage()
+        previewImage()
 
-})
+    })
 
 }
 
 
 // ===== Popup =====
 
-function openPopup(type){
+function openPopup(type) {
 
-const title = document.getElementById("popupTitle")
-const content = document.getElementById("popupContent")
-const popup = document.getElementById("popup")
+    const title = document.getElementById("popupTitle")
+    const content = document.getElementById("popupContent")
+    const popup = document.getElementById("popup")
 
-if(type==="ingredients"){
+    if (!popup) return
 
-title.innerText="Nguyên liệu"
+    if (type === "ingredients") {
 
-content.innerHTML=`
-- Bánh phở
-- Thịt bò
-- Hành lá
-- Gừng
-- Nước dùng
-`
+        title.innerText = "Nguyên liệu"
+
+        content.innerHTML = `
+        - Bánh phở
+        - Thịt bò
+        - Hành lá
+        - Gừng
+        - Nước dùng
+        `
+
+    }
+
+    if (type === "recipe") {
+
+        title.innerText = "Quy trình"
+
+        content.innerHTML = `
+        1. Nấu nước dùng<br>
+        2. Trụng bánh phở<br>
+        3. Cho thịt bò<br>
+        4. Chan nước dùng
+        `
+
+    }
+
+    if (type === "nutrition") {
+
+        title.innerText = "Dinh dưỡng"
+
+        content.innerHTML = `
+        Calories: 350 kcal <br>
+        Protein: 20g <br>
+        Carb: 40g <br>
+        Fat: 8g
+        `
+
+    }
+
+    popup.classList.remove("hidden")
 
 }
 
-if(type==="recipe"){
+function closePopup() {
 
-title.innerText="Quy trình"
+    const popup = document.getElementById("popup")
 
-content.innerHTML=`
-1. Nấu nước dùng
-2. Trụng bánh phở
-3. Cho thịt bò
-4. Chan nước dùng
-`
-
-}
-
-if(type==="nutrition"){
-
-title.innerText="Dinh dưỡng"
-
-content.innerHTML=`
-Calories: 350 kcal <br>
-Protein: 20g <br>
-Carb: 40g <br>
-Fat: 8g
-`
-
-}
-
-popup.classList.remove("hidden")
-
-}
-
-function closePopup(){
-
-document.getElementById("popup").classList.add("hidden")
+    if (popup) {
+        popup.classList.add("hidden")
+    }
 
 }
 
 
 // ===== History =====
 
-function saveHistory(food, accuracy){
+function saveHistory(food, accuracy) {
 
-let history = JSON.parse(localStorage.getItem("foodHistory")) || []
+    let history = JSON.parse(localStorage.getItem("foodHistory")) || []
 
-history.push({
-food:food,
-accuracy:accuracy
-})
+    history.push({
+        food: food,
+        accuracy: accuracy
+    })
 
-localStorage.setItem("foodHistory", JSON.stringify(history))
+    localStorage.setItem("foodHistory", JSON.stringify(history))
 
 }
 
-function loadHistory(){
+function loadHistory() {
 
-let history = JSON.parse(localStorage.getItem("foodHistory")) || []
+    let history = JSON.parse(localStorage.getItem("foodHistory")) || []
 
-const list = document.getElementById("historyList")
+    const list = document.getElementById("historyList")
 
-if(!list) return
+    if (!list) return
 
-list.innerHTML=""
+    list.innerHTML = ""
 
-// hiển thị 5 món gần nhất
-history.slice(-5).reverse().forEach(item =>{
+    // hiển thị 5 món gần nhất
+    history.slice(-5).reverse().forEach(item => {
 
-const li = document.createElement("li")
+        const li = document.createElement("li")
 
-li.className="bg-white shadow p-3 rounded-lg"
+        li.className = "bg-white shadow p-3 rounded-lg"
 
-li.innerText=`🍜 ${item.food} - ${item.accuracy}`
+        li.innerText = `🍜 ${item.food} - ${item.accuracy}`
 
-list.appendChild(li)
+        list.appendChild(li)
 
-})
+    })
 
 }
 

@@ -1,83 +1,214 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="vi">
 
-    <title>FoodLens AI</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+<title>FoodLens - AI Nhận Diện Món Ăn</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/style.css">
 
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+</head>
 
-  <body class="min-h-screen">
-    <!-- Navbar -->
+<body>
 
-    <nav class="bg-white shadow-sm">
-      <div
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
-      >
-        <h1 class="text-2xl font-bold text-green-600 logo-ai">🍜 FoodLens</h1>
-      </div>
-    </nav>
-    <!-- Hero -->
+<!-- ===== Navbar ===== -->
 
-    <section class="text-center mt-16">
-      <h1 class="text-5xl font-bold text-white mb-4 drop-shadow-lg">AI nhận diện món ăn 🍜</h1>
+<nav class="bg-white shadow-md fixed w-full z-50">
 
-      <p class="text-white text-lg drop-shadow-md">
-        Upload ảnh để phân tích món ăn, nguyên liệu, quy trình chế biến và dinh
-        dưỡng
-      </p>
-    </section>
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-    <!-- Upload Card -->
+<h1 class="text-2xl font-bold text-green-600">🍜 FoodLens</h1>
 
-    <div class="flex justify-center mt-12">
-      <div
-        class="upload-card bg-white shadow-xl rounded-2xl p-10 w-[400px] text-center"
-      >
-        <div id="drop-area" class="upload-box">
-          <input type="file" id="imageInput" class="hidden" />
+<div class="space-x-6 hidden md:flex">
 
-          <div id="uploadText" class="upload-placeholder">
-            <div class="text-5xl mb-2">📷</div>
-            <p class="text-gray-500">
-              Kéo ảnh vào đây hoặc
-              <span class="text-green-600 font-semibold">chọn ảnh</span>
-            </p>
-          </div>
+<a href="#" class="text-gray-700 hover:text-green-600">Trang chủ</a>
+<a href="#features" class="text-gray-700 hover:text-green-600">Tính năng</a>
+<a href="#about" class="text-gray-700 hover:text-green-600">Giới thiệu</a>
 
-          <img id="preview" class="preview-img hidden" />
+</div>
 
-          <div id="scanLine" class="scan-line hidden"></div>
-        </div>
+<div class="space-x-3">
 
-        <button
-          onclick="uploadImage()"
-          id="aiButton"
-          class="ai-btn mt-6 w-full bg-green-600 hover:bg-green-700 py-3 rounded-lg text-lg"
-        >
-          <span id="aiText" class="ai-text">🔍 Bắt đầu nhận diện</span>
-        </button>
+<button class="px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50">
+Đăng nhập
+</button>
 
-        <div id="loading" class="hidden mt-6">
-          <div class="flex flex-col items-center">
-            <div
-              class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"
-            ></div>
+<button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+Đăng ký
+</button>
 
-            <p class="mt-3 text-gray-500">AI đang phân tích món ăn...</p>
-          </div>
-        </div>
-      </div>
-    </div>
+</div>
+
+</div>
+
+</nav>
+
+
+<!-- ===== Hero Banner ===== -->
+
+<section class="hero-banner pt-24 flex items-center justify-center text-center text-white">
+
+<div>
+
+<h1 class="text-6xl font-bold mb-6 drop-shadow-lg">
+AI Nhận Diện Món Ăn
+</h1>
+
+<p class="text-xl mb-8 max-w-2xl mx-auto drop-shadow-md">
+FoodLens sử dụng trí tuệ nhân tạo để nhận diện món ăn từ hình ảnh,
+phân tích nguyên liệu, quy trình nấu ăn và thông tin dinh dưỡng.
+</p>
+
+
+</div>
+
+</section>
+
+
+<!-- ===== About ===== -->
+
+<section id="about" class="py-24 bg-gray-100">
+
+<div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+
+<!-- Hình ảnh -->
+
+<div class="relative">
+
+<img 
+    src="../uploads/A1.png"
+    class="rounded-2xl shadow-2xl w-full h-[420px] object-cover"
+>
+
+</div>
+
+<!-- Nội dung -->
+
+<div>
+
+<h2 class="text-4xl font-bold text-gray-800 mb-6">
+🍜 FoodLens AI là gì?
+</h2>
+
+<p class="text-gray-600 text-lg leading-relaxed mb-6">
+
+FoodLens là hệ thống sử dụng trí tuệ nhân tạo để nhận diện món ăn từ hình ảnh.
+Chỉ cần tải lên một bức ảnh, hệ thống AI sẽ phân tích và xác định món ăn
+cùng các thông tin chi tiết liên quan.
+
+</p>
+
+<p class="text-gray-600 leading-relaxed mb-8">
+
+Kết quả bao gồm tên món, nguyên liệu, quy trình chế biến và giá trị dinh dưỡng.
+Ứng dụng giúp người dùng khám phá ẩm thực và học nấu ăn thông minh hơn.
+
+</p>
+
+
+<!-- Feature mini -->
+
+<div class="grid grid-cols-2 gap-4 mb-8">
+
+<div class="flex items-center gap-3">
+<span class="text-green-600 text-2xl">📷</span>
+<p class="text-gray-700">Nhận diện hình ảnh</p>
+</div>
+
+<div class="flex items-center gap-3">
+<span class="text-green-600 text-2xl">🥗</span>
+<p class="text-gray-700">Phân tích nguyên liệu</p>
+</div>
+
+<div class="flex items-center gap-3">
+<span class="text-green-600 text-2xl">🍳</span>
+<p class="text-gray-700">Hướng dẫn nấu ăn</p>
+</div>
+
+<div class="flex items-center gap-3">
+<span class="text-green-600 text-2xl">💪</span>
+<p class="text-gray-700">Thông tin dinh dưỡng</p>
+</div>
+
+</div>
+
+<a href="ai.html"
+class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-lg shadow-lg">
+🚀 Trải nghiệm AI ngay
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===== Features ===== -->
+
+<section id="features" class="py-20 bg-white">
+
+<div class="max-w-6xl mx-auto px-6 text-center">
+
+<h2 class="text-4xl font-bold mb-12 text-gray-800">
+Tính năng nổi bật
+</h2>
+
+<div class="grid md:grid-cols-3 gap-8">
+
+<div class="feature-card">
+
+<div class="text-5xl mb-4">📷</div>
+
+<h3 class="text-xl font-semibold mb-2">
+Nhận diện hình ảnh
+</h3>
+
+<p class="text-gray-600">
+AI phân tích hình ảnh món ăn và xác định tên món với độ chính xác cao.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="text-5xl mb-4">🥗</div>
+
+<h3 class="text-xl font-semibold mb-2">
+Phân tích nguyên liệu
+</h3>
+
+<p class="text-gray-600">
+Hiển thị các nguyên liệu chính được sử dụng trong món ăn.
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="text-5xl mb-4">💪</div>
+
+<h3 class="text-xl font-semibold mb-2">
+Thông tin dinh dưỡng
+</h3>
+
+<p class="text-gray-600">
+Cung cấp thông tin về calories, protein và giá trị dinh dưỡng.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===== Footer ===== -->
 
     <footer class="bg-gray-900 text-gray-300 mt-20">
       <div class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
@@ -103,7 +234,5 @@
         © 2026 FoodLens AI - Developed by Team FoodLens
       </div>
     </footer>
-
-    <script src="js/main.js"></script>
-  </body>
+</body>
 </html>
