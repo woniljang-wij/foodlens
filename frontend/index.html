@@ -30,14 +30,26 @@
 
 </div>
 
-<div class="space-x-3">
+<div class="space-x-3 flex items-center">
 
-<button class="px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50">
+<span id="userName" class="text-gray-700 font-medium hidden"></span>
+
+<a id="loginBtn"
+href="login.html"
+class="px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50">
 Đăng nhập
-</button>
+</a>
 
-<button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
+<a id="registerBtn"
+href="register.html"
+class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
 Đăng ký
+</a>
+
+<button id="logoutBtn"
+onclick="logout()"
+class="px-4 py-2 bg-red-500 text-white rounded-lg hidden">
+Logout
 </button>
 
 </div>
@@ -62,7 +74,6 @@ FoodLens sử dụng trí tuệ nhân tạo để nhận diện món ăn từ h�
 phân tích nguyên liệu, quy trình nấu ăn và thông tin dinh dưỡng.
 </p>
 
-
 </div>
 
 </section>
@@ -74,69 +85,65 @@ phân tích nguyên liệu, quy trình nấu ăn và thông tin dinh dưỡng.
 
 <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
 
-<!-- Hình ảnh -->
-
 <div class="relative">
 
 <img 
-    src="../uploads/A1.png"
-    class="rounded-2xl shadow-2xl w-full h-[420px] object-cover"
+src="../uploads/A1.png"
+class="rounded-2xl shadow-2xl w-full h-[420px] object-cover"
 >
 
 </div>
 
-<!-- Nội dung -->
-
 <div>
 
-<h2 class="text-4xl font-bold text-gray-800 mb-6">
-🍜 FoodLens AI là gì?
+<span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-semibold">
+AI Powered
+</span>
+
+<h2 class="text-4xl font-bold text-gray-800 mt-4 mb-6">
+🍜 FoodLens AI – Nhận diện món ăn thông minh
 </h2>
 
 <p class="text-gray-600 text-lg leading-relaxed mb-6">
-
-FoodLens là hệ thống sử dụng trí tuệ nhân tạo để nhận diện món ăn từ hình ảnh.
-Chỉ cần tải lên một bức ảnh, hệ thống AI sẽ phân tích và xác định món ăn
-cùng các thông tin chi tiết liên quan.
-
+FoodLens là nền tảng ứng dụng <b>Trí tuệ nhân tạo (AI)</b> giúp nhận diện
+món ăn chỉ từ một bức ảnh. Người dùng chỉ cần tải lên hình ảnh, hệ thống
+sẽ tự động phân tích và xác định món ăn trong vài giây.
 </p>
 
-<p class="text-gray-600 leading-relaxed mb-8">
-
-Kết quả bao gồm tên món, nguyên liệu, quy trình chế biến và giá trị dinh dưỡng.
-Ứng dụng giúp người dùng khám phá ẩm thực và học nấu ăn thông minh hơn.
-
+<p class="text-gray-600 text-lg leading-relaxed mb-6">
+Ngoài việc nhận diện, FoodLens còn cung cấp thông tin chi tiết về
+<b>nguyên liệu, cách chế biến và giá trị dinh dưỡng</b>.
 </p>
 
+<div class="grid grid-cols-2 gap-y-4 gap-x-10 mb-10">
 
-<!-- Feature mini -->
-
-<div class="grid grid-cols-2 gap-4 mb-8">
-
-<div class="flex items-center gap-3">
-<span class="text-green-600 text-2xl">📷</span>
-<p class="text-gray-700">Nhận diện hình ảnh</p>
+<div class="flex items-center gap-3 text-gray-700">
+<span class="text-green-600 text-xl">✔</span>
+<p>Nhận diện món ăn bằng AI</p>
 </div>
 
-<div class="flex items-center gap-3">
-<span class="text-green-600 text-2xl">🥗</span>
-<p class="text-gray-700">Phân tích nguyên liệu</p>
+<div class="flex items-center gap-3 text-gray-700">
+<span class="text-green-600 text-xl">✔</span>
+<p>Phân tích nguyên liệu</p>
 </div>
 
-<div class="flex items-center gap-3">
-<span class="text-green-600 text-2xl">🍳</span>
-<p class="text-gray-700">Hướng dẫn nấu ăn</p>
+<div class="flex items-center gap-3 text-gray-700">
+<span class="text-green-600 text-xl">✔</span>
+<p>Hướng dẫn chế biến</p>
 </div>
 
-<div class="flex items-center gap-3">
-<span class="text-green-600 text-2xl">💪</span>
-<p class="text-gray-700">Thông tin dinh dưỡng</p>
+<div class="flex items-center gap-3 text-gray-700">
+<span class="text-green-600 text-xl">✔</span>
+<p>Thông tin dinh dưỡng</p>
 </div>
 
 </div>
 
-<a href="ai.html"
-class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-lg shadow-lg">
+<div class="flex justify-center">
+
+<a href="#"
+onclick="checkLogin()"
+class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-xl text-lg shadow-lg transition">
 🚀 Trải nghiệm AI ngay
 </a>
 
@@ -147,58 +154,42 @@ class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg text-lg s
 </section>
 
 
-<!-- ===== Features ===== -->
-
-<section id="features" class="py-20 bg-white">
+<section id="features" class="py-28 bg-gradient-to-b from-white to-gray-100">
 
 <div class="max-w-6xl mx-auto px-6 text-center">
 
-<h2 class="text-4xl font-bold mb-12 text-gray-800">
-Tính năng nổi bật
+<h2 class="text-4xl font-bold text-gray-800 mb-4">
+Tính năng AI
 </h2>
 
-<div class="grid md:grid-cols-3 gap-8">
-
-<div class="feature-card">
-
-<div class="text-5xl mb-4">📷</div>
-
-<h3 class="text-xl font-semibold mb-2">
-Nhận diện hình ảnh
-</h3>
-
-<p class="text-gray-600">
-AI phân tích hình ảnh món ăn và xác định tên món với độ chính xác cao.
+<p class="text-gray-500 mb-16">
+Khám phá sức mạnh trí tuệ nhân tạo trong việc phân tích và nhận diện món ăn.
 </p>
 
+<div class="grid md:grid-cols-3 gap-10">
+
+<div class="bg-white p-8 rounded-3xl shadow-lg">
+<div class="text-5xl mb-5">📸</div>
+<h3 class="text-xl font-semibold mb-3">Nhận diện món ăn</h3>
+<p class="text-gray-600">
+AI phân tích hình ảnh món ăn và xác định tên món trong vài giây.
+</p>
 </div>
 
-<div class="feature-card">
-
-<div class="text-5xl mb-4">🥗</div>
-
-<h3 class="text-xl font-semibold mb-2">
-Phân tích nguyên liệu
-</h3>
-
+<div class="bg-white p-8 rounded-3xl shadow-lg">
+<div class="text-5xl mb-5">🥗</div>
+<h3 class="text-xl font-semibold mb-3">Phân tích nguyên liệu</h3>
 <p class="text-gray-600">
-Hiển thị các nguyên liệu chính được sử dụng trong món ăn.
+Hiển thị danh sách nguyên liệu chính trong món ăn.
 </p>
-
 </div>
 
-<div class="feature-card">
-
-<div class="text-5xl mb-4">💪</div>
-
-<h3 class="text-xl font-semibold mb-2">
-Thông tin dinh dưỡng
-</h3>
-
+<div class="bg-white p-8 rounded-3xl shadow-lg">
+<div class="text-5xl mb-5">💪</div>
+<h3 class="text-xl font-semibold mb-3">Thông tin dinh dưỡng</h3>
 <p class="text-gray-600">
-Cung cấp thông tin về calories, protein và giá trị dinh dưỡng.
+Cung cấp calories, protein và dinh dưỡng.
 </p>
-
 </div>
 
 </div>
@@ -210,29 +201,73 @@ Cung cấp thông tin về calories, protein và giá trị dinh dưỡng.
 
 <!-- ===== Footer ===== -->
 
-    <footer class="bg-gray-900 text-gray-300 mt-20">
-      <div class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
-        <!-- Logo -->
-        <div>
-          <h2 class="text-2xl font-bold text-green-400">🍜 FoodLens</h2>
-          <p class="mt-3 text-sm text-gray-400 leading-relaxed">
-            Hệ thống nhận diện món ăn và phân tích dinh dưỡng thông minh.
-          </p>
-        </div>
+<footer class="bg-gray-900 text-gray-300 mt-20">
 
-        <!-- Contact -->
-        <div>
-          <h3 class="text-lg font-semibold mb-3 text-white">Liên hệ</h3>
-          <p>📧 foodlens.ai@gmail.com</p>
-          <p class="mt-1">💻 github.com/foodlens</p>
-        </div>
-      </div>
+<div class="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-10">
 
-      <div
-        class="text-center text-gray-500 text-sm border-t border-gray-800 py-4"
-      >
-        © 2026 FoodLens AI - Developed by Team FoodLens
-      </div>
-    </footer>
+<div>
+<h2 class="text-2xl font-bold text-green-400">🍜 FoodLens</h2>
+<p class="mt-3 text-sm text-gray-400">
+Hệ thống nhận diện món ăn và phân tích dinh dưỡng thông minh.
+</p>
+</div>
+
+<div>
+<h3 class="text-lg font-semibold mb-3 text-white">Liên hệ</h3>
+<p>📧 foodlens.ai@gmail.com</p>
+<p class="mt-1">💻 github.com/foodlens</p>
+</div>
+
+</div>
+
+<div class="text-center text-gray-500 text-sm border-t border-gray-800 py-4">
+© 2026 FoodLens AI - Developed by Team FoodLens
+</div>
+
+</footer>
+
+
+<script>
+
+let user = localStorage.getItem("user")
+
+if(user){
+
+document.getElementById("userName").innerText = "Xin chào, " + user
+document.getElementById("userName").classList.remove("hidden")
+
+document.getElementById("loginBtn").style.display="none"
+document.getElementById("registerBtn").style.display="none"
+
+document.getElementById("logoutBtn").classList.remove("hidden")
+
+}
+
+function logout(){
+
+localStorage.removeItem("user")
+location.reload()
+
+}
+
+function checkLogin(){
+
+let user = localStorage.getItem("user")
+
+if(!user){
+
+alert("Bạn cần đăng nhập trước")
+window.location="login.html"
+
+}else{
+
+window.location="ai.html"
+
+}
+
+}
+
+</script>
+
 </body>
 </html>

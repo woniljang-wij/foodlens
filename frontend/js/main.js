@@ -31,7 +31,6 @@ function previewImage() {
         preview.src = URL.createObjectURL(file)
         preview.classList.remove("hidden")
 
-        // Ẩn chữ upload
         if (uploadText) {
             uploadText.style.display = "none"
         }
@@ -39,7 +38,6 @@ function previewImage() {
     }
 
 }
-
 
 // ===== Upload image (giả lập AI) =====
 
@@ -56,31 +54,25 @@ function uploadImage() {
 
     }
 
-    // bật scan effect
     if (scan) {
         scan.classList.remove("hidden")
     }
 
-    // đổi trạng thái nút
     if (btn) btn.disabled = true
     if (text) text.innerHTML = "<span class='spin'>🧠</span> AI đang phân tích..."
 
     setTimeout(() => {
 
-        // Fake AI result
         const food = "Phở bò"
         const accuracy = "92%"
 
-        // lưu history
         saveHistory(food, accuracy)
 
-        // chuyển trang
         window.location.href = "result.html"
 
     }, 2000)
 
 }
-
 
 // ===== Drag & Drop =====
 
@@ -110,7 +102,6 @@ if (dropArea) {
     })
 
 }
-
 
 // ===== Popup =====
 
@@ -176,7 +167,6 @@ function closePopup() {
 
 }
 
-
 // ===== History =====
 
 function saveHistory(food, accuracy) {
@@ -202,7 +192,6 @@ function loadHistory() {
 
     list.innerHTML = ""
 
-    // hiển thị 5 món gần nhất
     history.slice(-5).reverse().forEach(item => {
 
         const li = document.createElement("li")
@@ -217,5 +206,139 @@ function loadHistory() {
 
 }
 
-// load history khi mở trang
 loadHistory()
+
+// ==========================
+// REGISTER
+// ==========================
+
+function registerUser(){
+
+let fullname = document.getElementById("fullname").value
+let email = document.getElementById("email").value
+let password = document.getElementById("password").value
+let confirm = document.getElementById("confirm").value
+
+if(password !== confirm){
+alert("Mật khẩu xác nhận không đúng")
+return
+}
+
+fetch("http://127.0.0.1:5000/register",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+full_name:fullname,
+email:email,
+password:password
+})
+
+})
+.then(res=>res.json())
+.then(data=>{
+
+alert(data.message)
+
+if(data.message === "Đăng ký thành công"){
+window.location="login.html"
+}
+
+})
+
+}
+
+// ==========================
+// LOGIN
+// ==========================
+
+function loginUser(){
+
+let email = document.getElementById("email").value
+let password = document.getElementById("password").value
+
+fetch("http://127.0.0.1:5000/login",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+email:email,
+password:password
+})
+
+})
+.then(res=>res.json())
+.then(data=>{
+
+if(data.message === "success"){
+
+alert("Đăng nhập thành công")
+
+// lưu FULL NAME
+localStorage.setItem("user", data.full_name)
+
+// quay về trang chủ
+window.location="index.html"
+
+}else{
+
+alert("Sai email hoặc mật khẩu")
+
+}
+
+})
+
+}
+// ==========================
+// CHECK LOGIN
+// ==========================
+
+function checkLogin(){
+
+let user = localStorage.getItem("user")
+
+if(!user){
+alert("Bạn cần đăng nhập trước")
+window.location="login.html"
+}
+
+}
+
+// ==========================
+// LOGOUT
+// ==========================
+
+function logout(){
+
+localStorage.removeItem("user")
+
+window.location="index.html"
+
+}
+
+// ==========================
+// PROTECT PAGE
+// ==========================
+
+const protectedPages = ["ai.html","result.html"]
+
+const currentPage = window.location.pathname.split("/").pop()
+
+if(protectedPages.includes(currentPage)){
+
+let user = localStorage.getItem("user")
+
+if(!user){
+alert("Bạn cần đăng nhập trước")
+window.location = "login.html"
+}
+
+}
