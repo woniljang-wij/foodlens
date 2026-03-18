@@ -47,7 +47,7 @@ class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">
 </a>
 
 <button id="logoutBtn"
-onclick="logout()"
+onclick="goToLogout()"
 class="px-4 py-2 bg-red-500 text-white rounded-lg hidden">
 Logout
 </button>
@@ -233,37 +233,28 @@ let user = localStorage.getItem("user")
 
 if(user){
 
-document.getElementById("userName").innerText = "Xin chào, " + user
-document.getElementById("userName").classList.remove("hidden")
+    document.getElementById("userName").innerText = "Xin chào, " + user
+    document.getElementById("userName").classList.remove("hidden")
 
-document.getElementById("loginBtn").style.display="none"
-document.getElementById("registerBtn").style.display="none"
+    document.getElementById("loginBtn").style.display="none"
+    document.getElementById("registerBtn").style.display="none"
 
-document.getElementById("logoutBtn").classList.remove("hidden")
-
+    document.getElementById("logoutBtn").classList.remove("hidden")
 }
 
-function logout(){
-
-localStorage.removeItem("user")
-location.reload()
-
+function goToLogout(){
+    window.location.href = "confirm_logout.html"
 }
 
 function checkLogin(){
 
-let user = localStorage.getItem("user")
+    let user = localStorage.getItem("user")
 
-if(!user){
-
-alert("Bạn cần đăng nhập trước")
-window.location="login.html"
-
-}else{
-
-window.location="ai.html"
-
-}
+    if(!user){
+        window.location.href = "login.html?redirect=ai.html"
+    }else{
+        window.location.href = "ai.html"
+    }
 
 }
 

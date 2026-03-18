@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Xác nhận đăng xuất</title>
+
+    <link rel="stylesheet" href="css/logout.css">
+</head>
+<body class="logout-container">
+
+<div class="logout-card">
+
+    <h2>Đăng xuất</h2>
+    <p>Bạn có chắc muốn đăng xuất không?</p>
+
+    <div class="logout-actions">
+        <button class="btn btn-confirm" onclick="confirmLogout()">Đăng xuất</button>
+        <button class="btn btn-cancel" onclick="goBack()">Hủy</button>
+    </div>
+
+</div>
+
+<script>
+function confirmLogout(){
+    localStorage.clear();
+    window.location.href = "index.html";
+}
+
+function goBack(){
+    window.history.back();
+}
+</script>
+
+</body>
+</html>

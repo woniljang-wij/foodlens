@@ -1,0 +1,77 @@
+/* ===== LOGOUT PAGE (SYNC LOGIN/REGISTER) ===== */
+
+.logout-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#f3f4f6;
+}
+
+.logout-card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    width:380px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    animation:fadeIn 0.4s ease;
+}
+
+.logout-card h2{
+    color:#16a34a;
+    margin-bottom:10px;
+}
+
+.logout-card p{
+    color:#6b7280;
+    margin-bottom:25px;
+}
+
+/* buttons */
+
+.logout-actions{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+}
+
+.btn{
+    padding:10px 20px;
+    border-radius:8px;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-confirm{
+    background:#16a34a;
+    color:white;
+}
+
+.btn-confirm:hover{
+    background:#15803d;
+}
+
+.btn-cancel{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.btn-cancel:hover{
+    background:#d1d5db;
+}
+
+/* animation */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}

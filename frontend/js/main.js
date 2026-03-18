@@ -280,13 +280,20 @@ password:password
 
 if(data.message === "success"){
 
-alert("Đăng nhập thành công")
-
+    
 // lưu FULL NAME
 localStorage.setItem("user", data.full_name)
 
-// quay về trang chủ
-window.location="index.html"
+// 🔥 lấy redirect từ URL
+const params = new URLSearchParams(window.location.search)
+const redirect = params.get("redirect")
+
+// 🔥 chuyển trang đúng
+if(redirect){
+    window.location = redirect
+}else{
+    window.location = "index.html"
+}
 
 }else{
 
@@ -297,6 +304,7 @@ alert("Sai email hoặc mật khẩu")
 })
 
 }
+
 // ==========================
 // CHECK LOGIN
 // ==========================
